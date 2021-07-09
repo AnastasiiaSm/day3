@@ -53,6 +53,34 @@ void show(Ball ball) {
 	std::cout << "x = " << ball.x << " Vx = " << abs(ball.vx) << " ax = " << abs(ball.ax) << std::endl;
 }
 
+struct Image {
+	int mx;
+	int my;
+	int* points;
+};
+
+void CreateImage(Image* img, int tmx, int tmy) {
+	img->mx = tmx;
+	img->my = tmy;
+	img->points = new int[tmx * tmy]{ 1 };
+}
+
+void SetPointImage(Image* img, int x, int y, int color) {
+	img->points[(y * img->mx + x)] = color;
+}
+
+int GetPointImage(Image* img, int x, int y) {
+	return img->points[(y * img->mx + x)];
+}
+
+void ShowImage(Image* img) {
+	for (int i = 0; i < img->my; i++) {
+		for (int j = 0; j < img->mx; j++) 	
+			std::cout << img->points[i * img->mx + j] << " ";
+		std::cout << std::endl;
+	}
+}
+
 int main() {
   float t = 0;
   Ball a;
